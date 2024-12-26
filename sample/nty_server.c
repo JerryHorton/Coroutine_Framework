@@ -83,7 +83,7 @@ void server(void *arg) {
 
 int main(int argc, char *argv[]) {
     nty_coroutine *co = NULL;
-    int i = 0;
+    int i;
     unsigned short base_port = 9096;
     for (i = 0; i < 100; i++) {
         unsigned short *port = calloc(1, sizeof(unsigned short));

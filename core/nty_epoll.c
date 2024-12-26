@@ -16,8 +16,8 @@ int nty_epoller_wait(struct timespec t) {
 /* 注册一个事件触发机制（基于 eventfd）到调度器的 epoll 中 */
 int nty_epoller_ev_register_trigger(void) {
     nty_schedule *sched = nty_coroutine_get_sched();  // 获取当前线程关联的调度器
-    if (!sched->eventfd) {  // 尚未创建 eventfd
-        sched->eventfd = eventfd(0, EFD_NONBLOCK);  // 创建一个初始值为 0 的 eventfd，并设置为非阻塞模式
+    if (sched->eventfd == -1) {  // 尚未创建 eventfd
+        sched->eventfd = eventfd(0, EFD_NONBLOCK);  // 创建一个初始计数值为 0 的 eventfd，并设置为非阻塞模式
         assert(sched->eventfd != -1);
     }
     struct epoll_event ev;

@@ -169,6 +169,7 @@ int nty_schedule_create(int stack_size) {
         nty_schedule_free(sched);
         return -2;
     }
+    sched->eventfd = -1;  // 初始化eventfd
     nty_epoller_ev_register_trigger();  // 注册与事件触发相关的资源
     sched->stack_size = sched_stack_size;  // 设置调度器堆栈大小
     sched->page_size = getpagesize();  // 设置页面大小
@@ -263,31 +264,26 @@ static int nty_schedule_epoll(nty_schedule *sched) {
 
 /* 运行协程调度器，开始执行调度任务 */
 void nty_schedule_run(void) {
-    printf("311");
     nty_schedule *sched = nty_coroutine_get_sched();  // 获取当前线程绑定的调度器
     if (sched == NULL) {  // 调度器为空
         return;
     }
     while (!nty_schedule_isdone(sched)) {  // 调度器是未完成所有任务，说明有协程需要调度
         // 1. 处理超时协程
-        printf("318");
         nty_coroutine *expired = NULL;
         while ((expired = nty_schedule_expired(sched)) != NULL) {  // 从调度器的睡眠队列中获取已超时的协程
-            printf("321");
             nty_coroutine_resume(expired);  // 恢复运行这些协程
         }
         // 2. 运行就绪队列中的协程
         nty_coroutine *last_co_ready = TAILQ_LAST(&sched->ready,
                                                   _nty_coroutine_queue);  // 获取就绪队列中的最后一个协程，标记队列的末尾，防止循环中新增协程导致无限循环
         while (!TAILQ_EMPTY(&sched->ready)) {  // 就绪队列不为空
-            printf("328");
             nty_coroutine *co = TAILQ_FIRST(&sched->ready);  // 获取就绪队列的第一个协程
             TAILQ_REMOVE(&co->sched->ready, co, ready_next);  // 并从队列中移除
             if (co->status & BIT(NTY_COROUTINE_STATUS_FDEOF)) {  // 如果协程处于 EOF（没有更多数据可以读取）状态
                 nty_coroutine_free(co);  // 释放并跳过
                 continue;
             }
-            printf("335");
             nty_coroutine_resume(co);  // 恢复协程的运行
             if (co == last_co_ready) {  // 当前运行的协程是之前标记的最后一个协程，则退出循环，防止无限循环
                 break;

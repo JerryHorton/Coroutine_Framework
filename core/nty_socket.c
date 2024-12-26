@@ -107,6 +107,8 @@ static int nty_poll_inner(struct pollfd *fds, nfds_t nfds, int timeout) {
         co->events = fds[i].events;
         nty_schedule_sched_wait(co, fds[i].fd, fds[i].events, timeout);  // 将当前协程加入等待队列
 
+        nty_coroutine_yield(co);
+
         epoll_ctl(sched->poller_fd, EPOLL_CTL_DEL, fds[i].fd, &ev);  // 从epoll中移除文件描述符
         nty_schedule_desched_wait(fds[i].fd);  // 将文件描述符从调度器的等待队列中移除
     }

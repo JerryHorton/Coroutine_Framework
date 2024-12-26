@@ -249,7 +249,6 @@ nty_coroutine_sched_key_creator(void) {  // 标记函数为构造函数，会在
     assert(pthread_key_create(&global_sched_key, nty_coroutine_sched_key_destructor) ==
            0);  // 创建一个线程局部存储（TLS）键 global_sched_key，为每个线程分配独立的存储空间
     assert(pthread_setspecific(global_sched_key, NULL) == 0);  // 初始化时明确指定键值为空，避免使用未初始化的值
-    return;
 }
 
 /* 创建新的协程对象 */
