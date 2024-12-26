@@ -89,7 +89,7 @@ static int nty_poll_inner(struct pollfd *fds, nfds_t nfds, int timeout) {
         timeout = INT_MAX;
     }
 
-    nty_schedule * sched = nty_coroutine_get_sched();  // 获取当前线程的协程调度器
+    nty_schedule *sched = nty_coroutine_get_sched();  // 获取当前线程的协程调度器
     if (sched == NULL) {  // 调度器不存在，说明程序未正确初始化协程环境，直接返回错误
         printf("scheduler not exit!\n");
         return -1;
@@ -413,7 +413,7 @@ int nty_close(int fd) {
 
 /* 扩展的 socket */
 int socket(int domain, int type, int protocol) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return socket_f(domain, type, protocol);  // 调用原始 socket
     }
@@ -423,7 +423,7 @@ int socket(int domain, int type, int protocol) {
 
 /* 扩展的 read */
 ssize_t read(int fd, void *buf, size_t count) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return read_f(fd, buf, count);  // 调用原始 read
     }
@@ -433,7 +433,7 @@ ssize_t read(int fd, void *buf, size_t count) {
 
 /* 扩展的 recv */
 ssize_t recv(int fd, void *buf, size_t len, int flags) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return recv_f(fd, buf, len, flags);  // 调用原始 recv
     }
@@ -444,7 +444,7 @@ ssize_t recv(int fd, void *buf, size_t len, int flags) {
 /* 扩展的 recvfrom */
 ssize_t recvfrom(int fd, void *buf, size_t len, int flags,
                  struct sockaddr *src_addr, socklen_t *addrlen) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return recvfrom_f(fd, buf, len, flags, src_addr, addrlen);  // 调用原始 recvfrom
     }
@@ -454,7 +454,7 @@ ssize_t recvfrom(int fd, void *buf, size_t len, int flags,
 
 /* 扩展的 write */
 ssize_t write(int fd, const void *buf, size_t count) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return write_f(fd, buf, count);  // 调用原始 write
     }
@@ -464,7 +464,7 @@ ssize_t write(int fd, const void *buf, size_t count) {
 
 /* 扩展的 send */
 ssize_t send(int fd, const void *buf, size_t len, int flags) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return send_f(fd, buf, len, flags);  // 调用原始 send
     }
@@ -475,7 +475,7 @@ ssize_t send(int fd, const void *buf, size_t len, int flags) {
 /* 扩展的 sendto */
 ssize_t sendto(int fd, const void *buf, size_t len, int flags,
                const struct sockaddr *dest_addr, socklen_t addrlen) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return sendto_f(fd, buf, len, flags, dest_addr, addrlen);  // 调用原始 sendto
     }
@@ -485,7 +485,7 @@ ssize_t sendto(int fd, const void *buf, size_t len, int flags,
 
 /* 扩展的 accept */
 int accept(int fd, struct sockaddr *addr, socklen_t *len) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return accept_f(fd, addr, len);  // 调用原始 accept
     }
@@ -495,7 +495,7 @@ int accept(int fd, struct sockaddr *addr, socklen_t *len) {
 
 /* 扩展的 connect */
 int connect(int fd, const struct sockaddr *addr, socklen_t addrlen) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return connect_f(fd, addr, addrlen);  // 调用原始 connect
     }
@@ -505,7 +505,7 @@ int connect(int fd, const struct sockaddr *addr, socklen_t addrlen) {
 
 /* 扩展的 close */
 int close(int fd) {
-    nty_schedule * sched = nty_coroutine_get_sched();
+    nty_schedule *sched = nty_coroutine_get_sched();
     if (sched == NULL) {  // 非协程环境
         return close_f(fd);  // 调用原始 close
     }

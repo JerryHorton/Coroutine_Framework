@@ -244,8 +244,10 @@ static void nty_coroutine_sched_key_destructor(void *data) {
 }
 
 /* 全局初始化操作 */
-static void __attribute__((constructor(1000))) nty_coroutine_sched_key_creator(void) {  // 标记函数为构造函数，会在程序执行 main 函数之前自动调用
-    assert(pthread_key_create(&global_sched_key, nty_coroutine_sched_key_destructor) == 0);  // 创建一个线程局部存储（TLS）键 global_sched_key，为每个线程分配独立的存储空间
+static void __attribute__((constructor(1000)))
+nty_coroutine_sched_key_creator(void) {  // 标记函数为构造函数，会在程序执行 main 函数之前自动调用
+    assert(pthread_key_create(&global_sched_key, nty_coroutine_sched_key_destructor) ==
+           0);  // 创建一个线程局部存储（TLS）键 global_sched_key，为每个线程分配独立的存储空间
     assert(pthread_setspecific(global_sched_key, NULL) == 0);  // 初始化时明确指定键值为空，避免使用未初始化的值
     return;
 }
@@ -253,7 +255,7 @@ static void __attribute__((constructor(1000))) nty_coroutine_sched_key_creator(v
 /* 创建新的协程对象 */
 int nty_coroutine_create(nty_coroutine **new_co, proc_coroutine func, void *arg) {
     assert(pthread_once(&sched_key_once, nty_coroutine_sched_key_creator) == 0);  // 确保调度器键 global_sched_key 和析构函数已经正确注册
-    nty_schedule * sched = nty_coroutine_get_sched();  // 获取当前线程的调度器
+    nty_schedule *sched = nty_coroutine_get_sched();  // 获取当前线程的调度器
 
     if (sched == NULL) {  // 当前线程还没有关联调度器，则创建新的调度器
         nty_schedule_create(0);  // 创建调度器

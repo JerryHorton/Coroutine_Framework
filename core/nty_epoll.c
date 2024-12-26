@@ -8,7 +8,7 @@ int nty_epoller_create(void) {
 
 /* 等待 I/O 事件的发生 */
 int nty_epoller_wait(struct timespec t) {
-    nty_schedule * sched = nty_coroutine_get_sched();  // 获取当前线程关联的调度器
+    nty_schedule *sched = nty_coroutine_get_sched();  // 获取当前线程关联的调度器
     int timeout_ms = t.tv_sec * 1000u + t.tv_nsec / 1000000u;  // 将秒和纳秒转换为毫秒
     return epoll_wait(sched->poller_fd, sched->eventlist, NTY_CO_MAX_EVENTS, timeout_ms);
 }

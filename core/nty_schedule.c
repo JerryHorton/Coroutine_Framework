@@ -79,7 +79,7 @@ void nty_schedule_desched_sleepdown(nty_coroutine *co) {
 nty_coroutine *nty_schedule_search_wait(int fd) {
     nty_coroutine find_it = {0};  // 构造一个虚拟协程用于搜索目标协程
     find_it.fd = fd;
-    nty_schedule * sched = nty_coroutine_get_sched();  // 获取当前线程的调度器
+    nty_schedule *sched = nty_coroutine_get_sched();  // 获取当前线程的调度器
     nty_coroutine *co = RB_FIND(_nty_coroutine_rbtree_wait, &sched->waiting, &find_it);  // 查找相关协程
     if (co == NULL) {  // 未找到匹配协程
         return NULL;
@@ -157,7 +157,7 @@ void nty_schedule_free(nty_schedule *sched) {
 /* 初始化协程调度器 */
 int nty_schedule_create(int stack_size) {
     int sched_stack_size = stack_size ? stack_size : NTY_CO_MAX_STACKSIZE;  // 设置协程调度器的堆栈大小
-    nty_schedule * sched = (nty_schedule *) calloc(1, sizeof(nty_schedule));  // 为调度器分配内存
+    nty_schedule *sched = (nty_schedule *) calloc(1, sizeof(nty_schedule));  // 为调度器分配内存
     if (sched == NULL) {  // 分配失败
         printf("Failed to initialize scheduler\n");
         return -1;
@@ -264,7 +264,7 @@ static int nty_schedule_epoll(nty_schedule *sched) {
 /* 运行协程调度器，开始执行调度任务 */
 void nty_schedule_run(void) {
     printf("311");
-    nty_schedule * sched = nty_coroutine_get_sched();  // 获取当前线程绑定的调度器
+    nty_schedule *sched = nty_coroutine_get_sched();  // 获取当前线程绑定的调度器
     if (sched == NULL) {  // 调度器为空
         return;
     }

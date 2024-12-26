@@ -1,12 +1,12 @@
 #include "nty_coroutine.h"
 #include <arpa/inet.h>
 
-#define MAX_CLIENT_NUM			1000000
+#define MAX_CLIENT_NUM            1000000
 #define TIME_SUB_MS(tv1, tv2)  ((tv1.tv_sec - tv2.tv_sec) * 1000 + (tv1.tv_usec - tv2.tv_usec) / 1000)
 
 
 void server_reader(void *arg) {
-    int fd = *(int *)arg;
+    int fd = *(int *) arg;
     free(arg);
     int ret = 0;
 
@@ -20,7 +20,7 @@ void server_reader(void *arg) {
         char buf[1024] = {0};
         ret = nty_recv(fd, buf, 1024, 0);
         if (ret > 0) {
-            if(fd > MAX_CLIENT_NUM)
+            if (fd > MAX_CLIENT_NUM)
                 printf("read from server: %.*s\n", ret, buf);
 
             ret = nty_send(fd, buf, strlen(buf), 0);
@@ -39,7 +39,7 @@ void server_reader(void *arg) {
 
 void server(void *arg) {
 
-    unsigned short port = *(unsigned short *)arg;
+    unsigned short port = *(unsigned short *) arg;
     free(arg);
 
     int fd = nty_socket(AF_INET, SOCK_STREAM, 0);
@@ -49,7 +49,7 @@ void server(void *arg) {
     local.sin_family = AF_INET;
     local.sin_port = htons(port);
     local.sin_addr.s_addr = INADDR_ANY;
-    bind(fd, (struct sockaddr*)&local, sizeof(struct sockaddr_in));
+    bind(fd, (struct sockaddr *) &local, sizeof(struct sockaddr_in));
 
     listen(fd, 20);
     printf("listen port : %d\n", port);
@@ -60,7 +60,7 @@ void server(void *arg) {
 
     while (1) {
         socklen_t len = sizeof(struct sockaddr_in);
-        int cli_fd = nty_accept(fd, (struct sockaddr*)&remote, &len);
+        int cli_fd = nty_accept(fd, (struct sockaddr *) &remote, &len);
         if (cli_fd % 1000 == 999) {
 
             struct timeval tv_cur;
@@ -85,7 +85,7 @@ int main(int argc, char *argv[]) {
     nty_coroutine *co = NULL;
     int i = 0;
     unsigned short base_port = 9096;
-    for (i = 0;i < 100;i ++) {
+    for (i = 0; i < 100; i++) {
         unsigned short *port = calloc(1, sizeof(unsigned short));
         *port = base_port + i;
         nty_coroutine_create(&co, server, port);

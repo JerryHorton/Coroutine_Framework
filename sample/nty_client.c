@@ -2,8 +2,8 @@
 #include <arpa/inet.h>
 
 
-#define NTY_SERVER_IPADDR		"127.0.0.1"
-#define NTY_SERVER_PORT			9096
+#define NTY_SERVER_IPADDR        "127.0.0.1"
+#define NTY_SERVER_PORT            9096
 
 int init_client(void) {
 
@@ -18,7 +18,7 @@ int init_client(void) {
     serveraddr.sin_port = htons(NTY_SERVER_PORT);
     serveraddr.sin_addr.s_addr = inet_addr(NTY_SERVER_IPADDR);
 
-    int result = nty_connect(clientfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr));
+    int result = nty_connect(clientfd, (struct sockaddr *) &serveraddr, sizeof(serveraddr));
     if (result != 0) {
         printf("connect failed\n");
         return -2;
@@ -42,7 +42,6 @@ void client(void *arg) {
     }
 
 }
-
 
 
 int main(int argc, char *argv[]) {
