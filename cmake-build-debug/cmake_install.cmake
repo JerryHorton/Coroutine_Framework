@@ -1,4 +1,4 @@
-# Install script for directory: /home/jerryhotton/code/coroutine_framwork
+# Install script for directory: /home/jerryhotton/code/coroutine_framework
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/jerryhotton/code/coroutine_framwork/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jerryhotton/code/coroutine_framework/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

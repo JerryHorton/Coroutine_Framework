@@ -6,7 +6,7 @@
 # It is included in the main 'build.ninja'.
 
 # =============================================================================
-# Project: coroutine_framwork
+# Project: coroutine_framework
 # Configurations: Debug
 # =============================================================================
 # =============================================================================
@@ -61,7 +61,7 @@ rule C_EXECUTABLE_LINKER__nty_client_Debug
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /home/jerryhotton/software/clion/bin/cmake/linux/bin/cmake --regenerate-during-build -S/home/jerryhotton/code/coroutine_framwork -B/home/jerryhotton/code/coroutine_framwork/cmake-build-debug
+  command = /home/jerryhotton/software/clion/bin/cmake/linux/bin/cmake --regenerate-during-build -S/home/jerryhotton/code/coroutine_framework -B/home/jerryhotton/code/coroutine_framework/cmake-build-debug
   description = Re-running CMake...
   generator = 1
 

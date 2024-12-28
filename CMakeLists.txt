@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(coroutine_framwork C)
+project(coroutine_framework C)
 
 set(CMAKE_C_STANDARD 99)
 

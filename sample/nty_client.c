@@ -6,7 +6,6 @@
 #define NTY_SERVER_PORT            9096
 
 int init_client(void) {
-
     int clientfd = nty_socket(AF_INET, SOCK_STREAM, 0);
     if (clientfd <= 0) {
         printf("socket failed\n");
@@ -29,28 +28,20 @@ int init_client(void) {
 }
 
 void client(void *arg) {
-
     int clientfd = init_client();
     char *buffer = "ntyco_client\r\n";
-
     while (1) {
-
         int length = nty_send(clientfd, buffer, strlen(buffer), 0);
         printf("echo length : %d\n", length);
-
         sleep(1);
     }
 
 }
 
-
 int main(int argc, char *argv[]) {
     nty_coroutine *co = NULL;
-
     nty_coroutine_create(&co, client, NULL);
-
-    nty_schedule_run(); //run
-
+    nty_schedule_run();
     return 0;
 }
 

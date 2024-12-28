@@ -129,14 +129,14 @@ int nty_socket(int domain, int type, int protocol) {
 
     int ret = fcntl(fd, F_SETFL, O_NONBLOCK);  // 设置套接字为非阻塞模式
     if (ret == -1) {  // 设置失败
-        close(ret);  // 错误时关闭套接字
+        close_f(ret);  // 错误时关闭套接字
         return -1;
     }
 
     int reuse = 1;  // 启用 SO_REUSEADDR 选项
     ret = setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, (char *) &reuse, sizeof(reuse));  // 设置 SO_REUSEADDR 选项，允许重用地址
     if (ret == -1) {  // 设置失败
-        close(fd);  // 错误时关闭套接字
+        close_f(fd);  // 错误时关闭套接字
         return -1;
     }
 
@@ -224,7 +224,7 @@ ssize_t nty_recv(int fd, void *buf, size_t len, int flags) {
     nty_poll_inner(&fds, 1, NO_TIMEOUT);  // 等待套接字可读
 
     int ret = recv_f(fd, buf, len, flags);  // 读取数据
-    if (ret <= 0) {  // 读取失败
+    if (ret <= 0) {    // 读取失败
         if (ret == 0) {  // 对端正常关闭连接
             printf("Connection closed by peer\n");
         } else {  // 错误处理

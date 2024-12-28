@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: coroutine_framwork
+# Project: coroutine_framework
 # Configurations: Debug
 # =============================================================================
 
@@ -39,13 +39,13 @@ include CMakeFiles/rules.ninja
 #############################################
 # Logical path to working directory; prefix for absolute paths.
 
-cmake_ninja_workdir = /home/jerryhotton/code/coroutine_framwork/cmake-build-debug/
+cmake_ninja_workdir = /home/jerryhotton/code/coroutine_framework/cmake-build-debug/
 
 #############################################
 # Utility command for edit_cache
 
 build CMakeFiles/edit_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/jerryhotton/code/coroutine_framwork/cmake-build-debug && /home/jerryhotton/software/clion/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  COMMAND = cd /home/jerryhotton/code/coroutine_framework/cmake-build-debug && /home/jerryhotton/software/clion/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
   DESC = No interactive CMake dialog available...
   restat = 1
 
@@ -60,38 +60,38 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_nty_server: phony || CMakeFiles/nty_server.dir
 
-build CMakeFiles/nty_server.dir/core/nty_coroutine.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framwork/core/nty_coroutine.c || cmake_object_order_depends_target_nty_server
+build CMakeFiles/nty_server.dir/core/nty_coroutine.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framework/core/nty_coroutine.c || cmake_object_order_depends_target_nty_server
   DEP_FILE = CMakeFiles/nty_server.dir/core/nty_coroutine.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_server.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_server.dir/core
 
-build CMakeFiles/nty_server.dir/core/nty_epoll.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framwork/core/nty_epoll.c || cmake_object_order_depends_target_nty_server
+build CMakeFiles/nty_server.dir/core/nty_epoll.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framework/core/nty_epoll.c || cmake_object_order_depends_target_nty_server
   DEP_FILE = CMakeFiles/nty_server.dir/core/nty_epoll.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_server.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_server.dir/core
 
-build CMakeFiles/nty_server.dir/core/nty_schedule.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framwork/core/nty_schedule.c || cmake_object_order_depends_target_nty_server
+build CMakeFiles/nty_server.dir/core/nty_schedule.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framework/core/nty_schedule.c || cmake_object_order_depends_target_nty_server
   DEP_FILE = CMakeFiles/nty_server.dir/core/nty_schedule.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_server.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_server.dir/core
 
-build CMakeFiles/nty_server.dir/core/nty_socket.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framwork/core/nty_socket.c || cmake_object_order_depends_target_nty_server
+build CMakeFiles/nty_server.dir/core/nty_socket.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framework/core/nty_socket.c || cmake_object_order_depends_target_nty_server
   DEP_FILE = CMakeFiles/nty_server.dir/core/nty_socket.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_server.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_server.dir/core
 
-build CMakeFiles/nty_server.dir/sample/nty_server.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framwork/sample/nty_server.c || cmake_object_order_depends_target_nty_server
+build CMakeFiles/nty_server.dir/sample/nty_server.c.o: C_COMPILER__nty_server_Debug /home/jerryhotton/code/coroutine_framework/sample/nty_server.c || cmake_object_order_depends_target_nty_server
   DEP_FILE = CMakeFiles/nty_server.dir/sample/nty_server.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_server.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_server.dir/sample
 
@@ -116,7 +116,7 @@ build nty_server: C_EXECUTABLE_LINKER__nty_server_Debug CMakeFiles/nty_server.di
 # Utility command for rebuild_cache
 
 build CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
-  COMMAND = cd /home/jerryhotton/code/coroutine_framwork/cmake-build-debug && /home/jerryhotton/software/clion/bin/cmake/linux/bin/cmake --regenerate-during-build -S/home/jerryhotton/code/coroutine_framwork -B/home/jerryhotton/code/coroutine_framwork/cmake-build-debug
+  COMMAND = cd /home/jerryhotton/code/coroutine_framework/cmake-build-debug && /home/jerryhotton/software/clion/bin/cmake/linux/bin/cmake --regenerate-during-build -S/home/jerryhotton/code/coroutine_framework -B/home/jerryhotton/code/coroutine_framework/cmake-build-debug
   DESC = Running CMake to regenerate build system...
   pool = console
   restat = 1
@@ -132,38 +132,38 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build cmake_object_order_depends_target_nty_client: phony || CMakeFiles/nty_client.dir
 
-build CMakeFiles/nty_client.dir/core/nty_coroutine.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framwork/core/nty_coroutine.c || cmake_object_order_depends_target_nty_client
+build CMakeFiles/nty_client.dir/core/nty_coroutine.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framework/core/nty_coroutine.c || cmake_object_order_depends_target_nty_client
   DEP_FILE = CMakeFiles/nty_client.dir/core/nty_coroutine.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_client.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_client.dir/core
 
-build CMakeFiles/nty_client.dir/core/nty_epoll.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framwork/core/nty_epoll.c || cmake_object_order_depends_target_nty_client
+build CMakeFiles/nty_client.dir/core/nty_epoll.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framework/core/nty_epoll.c || cmake_object_order_depends_target_nty_client
   DEP_FILE = CMakeFiles/nty_client.dir/core/nty_epoll.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_client.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_client.dir/core
 
-build CMakeFiles/nty_client.dir/core/nty_schedule.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framwork/core/nty_schedule.c || cmake_object_order_depends_target_nty_client
+build CMakeFiles/nty_client.dir/core/nty_schedule.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framework/core/nty_schedule.c || cmake_object_order_depends_target_nty_client
   DEP_FILE = CMakeFiles/nty_client.dir/core/nty_schedule.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_client.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_client.dir/core
 
-build CMakeFiles/nty_client.dir/core/nty_socket.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framwork/core/nty_socket.c || cmake_object_order_depends_target_nty_client
+build CMakeFiles/nty_client.dir/core/nty_socket.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framework/core/nty_socket.c || cmake_object_order_depends_target_nty_client
   DEP_FILE = CMakeFiles/nty_client.dir/core/nty_socket.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_client.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_client.dir/core
 
-build CMakeFiles/nty_client.dir/sample/nty_client.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framwork/sample/nty_client.c || cmake_object_order_depends_target_nty_client
+build CMakeFiles/nty_client.dir/sample/nty_client.c.o: C_COMPILER__nty_client_Debug /home/jerryhotton/code/coroutine_framework/sample/nty_client.c || cmake_object_order_depends_target_nty_client
   DEP_FILE = CMakeFiles/nty_client.dir/sample/nty_client.c.o.d
   FLAGS = -g -std=gnu99
-  INCLUDES = -I/home/jerryhotton/code/coroutine_framwork/core
+  INCLUDES = -I/home/jerryhotton/code/coroutine_framework/core
   OBJECT_DIR = CMakeFiles/nty_client.dir
   OBJECT_FILE_DIR = CMakeFiles/nty_client.dir/sample
 
@@ -192,7 +192,7 @@ build nty_client: C_EXECUTABLE_LINKER__nty_client_Debug CMakeFiles/nty_client.di
 # =============================================================================
 
 #############################################
-# Folder: /home/jerryhotton/code/coroutine_framwork/cmake-build-debug
+# Folder: /home/jerryhotton/code/coroutine_framework/cmake-build-debug
 
 build all: phony nty_server nty_client
 

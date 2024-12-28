@@ -1,4 +1,4 @@
-/home/jerryhotton/code/coroutine_framwork/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/jerryhotton/code/coroutine_framwork/cmake-build-debug/CMakeFiles/nty_server.dir
-/home/jerryhotton/code/coroutine_framwork/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/jerryhotton/code/coroutine_framwork/cmake-build-debug/CMakeFiles/nty_client.dir
+/home/jerryhotton/code/coroutine_framework/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/jerryhotton/code/coroutine_framework/cmake-build-debug/CMakeFiles/nty_server.dir
+/home/jerryhotton/code/coroutine_framework/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/jerryhotton/code/coroutine_framework/cmake-build-debug/CMakeFiles/nty_client.dir

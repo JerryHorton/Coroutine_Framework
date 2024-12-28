@@ -172,7 +172,7 @@ typedef struct _nty_coroutine {
     size_t stack_size;  // 保存的栈内容的大小
     size_t last_stack_size;  // 协程的上一栈大小,用于记录栈的大小变化
 
-    nty_coroutine_status status;  // 协程的当前状态
+    uint32_t status;  // 协程的当前状态
     nty_schedule *sched;  // 指向协程调度器（nty_schedule）的指针,每个协程都与一个调度器相关联
 
     uint64_t birth;  // 协程的创建时间

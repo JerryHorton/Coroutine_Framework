@@ -113,7 +113,7 @@ void nty_schedule_sched_wait(nty_coroutine *co, int fd, unsigned short events, u
     co->fd = fd;  // 设置等待事件所在的描述符
     co->events = events;  // 设置等待事件
     nty_coroutine *co_tmp = RB_INSERT(_nty_coroutine_rbtree_wait, &co->sched->waiting, co);  // 插入等待队列
-    assert(co_tmp == NULL);  // 插入失败（即协程已经在队列中）
+    assert(co_tmp == NULL);  // 不为NULL则插入失败（即协程已经在队列中）
     printf("timeout --> %"
            PRIu64
            "\n", timeout);
