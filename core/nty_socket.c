@@ -101,10 +101,8 @@ static int nty_poll_inner(struct pollfd *fds, nfds_t nfds, int timeout) {
         struct epoll_event ev;
         ev.events = nty_pollevent_2epoll(fds[i].events);  // 将poll事件转换为epoll事件
         ev.data.fd = fds[i].fd;
-
         epoll_ctl(sched->poller_fd, EPOLL_CTL_ADD, fds[i].fd, &ev);  // 注册文件描述符
 
-        co->events = fds[i].events;
         nty_schedule_sched_wait(co, fds[i].fd, fds[i].events, timeout);  // 将当前协程加入等待队列
 
         nty_coroutine_yield(co);
@@ -278,7 +276,7 @@ ssize_t nty_send(int fd, const void *buf, size_t len, int flags) {
     return sent;  // 返回已成功发送的字节数
 }
 
-/* 非阻塞模式的 sendto */
+ /* 非阻塞模式的 sendto */
 ssize_t nty_sendto(int fd, const void *buf, size_t len, int flags,
                    const struct sockaddr *dest_addr, socklen_t addrlen) {
     if (sendto_f == NULL) {  // 初始化钩子
@@ -407,6 +405,14 @@ int nty_close(int fd) {
     nty_coroutine *co = sched->curr_thread;  // 获取当前协程
     if (co) {
         co->status |= BIT(NTY_COROUTINE_STATUS_FDEOF);  // 更新协程状态
+        if (co->status & BIT(NTY_COROUTINE_STATUS_SLEEPING)) {
+            // 从睡眠队列移除
+            nty_schedule_desched_sleepdown(co);
+        }
+        if (co->status & BIT(NTY_COROUTINE_STATUS_WAIT_READ) || co->status & BIT(NTY_COROUTINE_STATUS_WAIT_WRITE)) {
+            // 从等待队列移除
+            nty_schedule_desched_wait(fd);
+        }
         TAILQ_INSERT_TAIL(&nty_coroutine_get_sched()->ready, co, ready_next);  // 将协程插入就绪队列
     }
 #endif

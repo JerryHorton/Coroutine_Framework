@@ -4,6 +4,7 @@
 
 #define NTY_SERVER_IPADDR        "127.0.0.1"
 #define NTY_SERVER_PORT            9096
+#define BUFFER_SIZE                1024
 
 int init_client(void) {
     int clientfd = nty_socket(AF_INET, SOCK_STREAM, 0);
@@ -29,10 +30,13 @@ int init_client(void) {
 
 void client(void *arg) {
     int clientfd = init_client();
-    char *buffer = "ntyco_client\r\n";
+    char *send_data = "ntyco_client\r\n";
+    char recv_buffer[BUFFER_SIZE];
     while (1) {
-        int length = nty_send(clientfd, buffer, strlen(buffer), 0);
+        int length = nty_send(clientfd, send_data, strlen(send_data), 0);
         printf("echo length : %d\n", length);
+        length = nty_recv(clientfd, recv_buffer, sizeof(recv_buffer) - 1, 0);
+        printf("read from server: %.*s\n", length, recv_buffer);
         sleep(1);
     }
 
