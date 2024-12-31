@@ -4,7 +4,6 @@
 #define MAX_CLIENT_NUM            1000000
 #define TIME_SUB_MS(tv1, tv2)  ((tv1.tv_sec - tv2.tv_sec) * 1000 + (tv1.tv_usec - tv2.tv_usec) / 1000)
 
-
 void server_reader(void *arg) {
     int fd = *(int *) arg;
     free(arg);
@@ -70,7 +69,6 @@ void server(void *arg) {
         *arg = cli_fd;
         nty_coroutine_create(&read_co, server_reader, arg);
     }
-
 }
 
 int main(int argc, char *argv[]) {
