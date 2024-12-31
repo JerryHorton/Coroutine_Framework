@@ -1,4 +1,0 @@
-/home/jerryhotton/software/clion/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/jerryhotton/software/clion/bin/ninja/linux/ninja -G Ninja /home/jerryhotton/code/coroutine_framework
--- Configuring done
--- Generating done
--- Build files have been written to: /home/jerryhotton/code/coroutine_framework/cmake-build-debug
