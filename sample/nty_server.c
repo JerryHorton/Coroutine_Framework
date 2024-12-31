@@ -81,8 +81,6 @@ int main(int argc, char *argv[]) {
         nty_coroutine_create(&co, server, port);
     }
     nty_schedule_run();
-
-    return 0;
 }
 
 
