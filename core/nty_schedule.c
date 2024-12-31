@@ -18,7 +18,6 @@ static inline int nty_coroutine_sleep_cmp(nty_coroutine *co1, nty_coroutine *co2
 
 /* 基于等待属性比较两个协程的优先级或顺序 */
 static inline int nty_coroutine_wait_cmp(nty_coroutine *co1, nty_coroutine *co2) {
-#if CANCEL_FD_WAIT_UINT64
     if (co1->fd < co2->fd) {
         return -1;
     } else if (co1->fd == co2->fd) {
@@ -26,15 +25,6 @@ static inline int nty_coroutine_wait_cmp(nty_coroutine *co1, nty_coroutine *co2)
     } else {
         return 1;
     }
-#else
-    if (co1->fd_wait < co2->fd_wait) {
-        return -1;
-    }
-    if (co1->fd_wait == co2->fd_wait) {
-        return 0;
-    }
-#endif
-    return 1;
 }
 
 // 按 sleep_usecs 排序，用于存储进入睡眠状态的协程，方便根据超时值唤醒协程
@@ -174,14 +164,9 @@ int nty_schedule_create(int stack_size) {
     sched->stack_size = sched_stack_size;  // 设置调度器堆栈大小
     sched->page_size = getpagesize();  // 设置页面大小
 
-#ifdef _USE_UCONTEXT  // 基于 ucontext 的协程切换实现需要栈空间来保存协程的上下文状态
+// 基于 ucontext 的协程切换实现需要栈空间来保存协程的上下文状态
     int ret = posix_memalign(&sched->stack, sched->page_size, sched->stack_size);  // 为调度器分配一块对齐到页面大小的内存作为协程的栈空间
     assert(ret == 0);  // 分配成功，返回值为 0
-#else  // 基于汇编手动实现的协程切换不需要专门的栈分配
-    sched->stack = NULL;
-    bzero(&sched->ctx, sizeof(nty_cpu_ctx));
-#endif
-
     sched->spawned_coroutines = 0;  // 初始化调度器中已生成的协程计数
     sched->default_timeout = 3000000u;  // 设置调度器的默认超时时间
     RB_INIT(&sched->sleeping);  // 初始化睡眠队列
